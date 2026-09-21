@@ -43,42 +43,6 @@ function greeting(hour: number): string {
 const stale = (request: { loading: boolean; initialLoading: boolean }) =>
   request.loading && !request.initialLoading && 'opacity-55';
 
-/**
- * Dashboard.
- *
- * Answers four questions in the order a treasurer asks them: how much is there,
- * what came in, what went out, and what happened lately. Scope and period sit in
- * one bar at the top and every panel below obeys them — the alternative is five
- * panels each with their own filter, and no way to know they agree.
- */
-export default function Dashboard() {
-  const { user } = useAuth();
-  const { money } = useCurrency();
-
-  const [preset, setPreset] = useState<RangePreset>('30d');
-  const [accountId, setAccountId] = useState('all');
-  const [selected, setSelected] = useState<Transaction | null>(null);
-
-  const accounts = useApi(() => api.getAccounts(), []);
-  const summary = useApi(() => api.getDashboard(accountId, preset), [accountId, preset]);
-  const recent = useApi(
-    () => api.getTransactions({ accountId, pageSize: 7, sortBy: 'date', sortDirection: 'desc' }),
-    [accountId],
-  );
-  const analytics = useApi(() => api.getAnalytics(accountId, 12), [accountId]);
-
-  const accountName = useCallback(
-    (id: string) => accounts.data?.find((account) => account.id === id)?.name ?? 'Account',
-    [accounts.data],
-  );
-
-  const stats = summary.data;
-  const periodLabel = PRESETS.find((option) => option.value === preset)?.label ?? '';
-
-  const topCategories = useMemo(
-    () => (analytics.data?.categories ?? []).slice(0, 6),
-    [analytics.data],
-  );
 
   return (
     <>
