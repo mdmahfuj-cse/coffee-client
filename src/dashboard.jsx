@@ -276,63 +276,7 @@ export default function Dashboard() {
       </div>
 
       {/* Activity */}
-      <div className="grid gap-4 xl:grid-cols-3">
-        <Panel className="xl:col-span-2">
-          <PanelHeader
-            eyebrow="Activity"
-            title="Recent transactions"
-            actions={
-              <Link
-                to="/transactions"
-                className="text-sm text-primary transition-opacity hover:opacity-75"
-              >
-                View all
-              </Link>
-            }
-          />
-          <PanelBody flush>
-            <div className={cn('transition-opacity duration-200', stale(recent))}>
-              <TransactionLedger
-                rows={recent.data?.rows ?? []}
-                loading={recent.initialLoading}
-                error={recent.error}
-                onRetry={recent.refetch}
-                onSelect={setSelected}
-                accountName={accountId === 'all' ? accountName : undefined}
-                skeletonRows={7}
-              />
-            </div>
-          </PanelBody>
-        </Panel>
-
-        <Panel>
-          <PanelHeader
-            eyebrow="Spending analytics"
-            title="Where it went"
-            description="Twelve months of outgoing payments by category."
-          />
-          <PanelBody>
-            <CategoryDonut
-              data={analytics.data?.categories ?? []}
-              loading={analytics.initialLoading}
-              error={analytics.error}
-              onRetry={analytics.refetch}
-              height={210}
-              className={cn('transition-opacity duration-200', stale(analytics))}
-            />
-            {topCategories.length > 0 ? (
-              <ChartLegend
-                className="mt-5"
-                items={topCategories.map((slice) => ({
-                  label: slice.label,
-                  color: slice.color,
-                  value: `${money(slice.amount, 'USD', { compact: true })} · ${slice.share.toFixed(0)}%`,
-                }))}
-              />
-            ) : null}
-          </PanelBody>
-        </Panel>
-      </div>
+\
 
       <TransactionDrawer
         transaction={selected}
