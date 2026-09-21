@@ -103,22 +103,7 @@ export default function Dashboard() {
       />
 
       {/* Scope */}
-      <div className="panel mb-4 flex flex-col gap-3 p-3 sm:flex-row sm:items-center sm:justify-between sm:px-4">
-        <AccountPicker
-          accounts={accounts.data ?? []}
-          value={accountId}
-          onChange={setAccountId}
-          className="min-w-0"
-        />
-        <Segmented
-          label="Period"
-          value={preset}
-          onChange={setPreset}
-          options={PRESETS}
-          size="sm"
-          className="self-start sm:self-auto"
-        />
-      </div>
+
 
       {summary.error && !stats ? (
         <Panel className="mb-4">
