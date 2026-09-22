@@ -709,73 +709,7 @@ export default function Cards() {
           </div>
 
           {/* Spend and payments */}
-          <div className="grid gap-4 xl:grid-cols-3">
-            <Panel>
-              <PanelHeader
-                eyebrow="Spend"
-                title="Last six months"
-                description="Settled and pending card payments, month by month."
-              />
-              <PanelBody>
-                <SpendBars
-                  data={spend}
-                  loading={history.initialLoading}
-                  error={history.error}
-                  onRetry={history.refetch}
-                  height={224}
-                />
-              </PanelBody>
-            </Panel>
-
-            <Panel className="xl:col-span-2">
-              <PanelHeader
-                eyebrow="Activity"
-                title="Card payments"
-                actions={
-                  ledger.data ? (
-                    <p className="amount font-mono text-sm text-base-content/45">
-                      {ledger.data.total.toLocaleString('en-US')}
-                    </p>
-                  ) : null
-                }
-              />
-              <PanelBody flush>
-                <div
-                  className={cn(
-                    'transition-opacity duration-200',
-                    ledger.loading && !ledger.initialLoading && 'opacity-55',
-                  )}
-                >
-                  <TransactionLedger
-                    rows={ledger.data?.rows ?? []}
-                    loading={ledger.initialLoading}
-                    error={ledger.error}
-                    onRetry={ledger.refetch}
-                    onSelect={setSelectedTransaction}
-                    skeletonRows={LEDGER_PAGE_SIZE}
-                    empty={
-                      <EmptyState
-                        title="Nothing on this card yet"
-                        description="Card payments appear here as soon as the first one is authorised."
-                        icon={<CreditCard className="size-5" />}
-                      />
-                    }
-                  />
-                </div>
-              </PanelBody>
-
-              {ledger.data && ledger.data.total > 0 ? (
-                <Pagination
-                  page={ledger.data.page}
-                  pageCount={ledger.data.pageCount}
-                  total={ledger.data.total}
-                  pageSize={ledger.data.pageSize}
-                  onPage={setLedgerPage}
-                  noun="card payments"
-                />
-              ) : null}
-            </Panel>
-          </div>
+ 
 
           {/* Limits */}
   
