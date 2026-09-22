@@ -633,29 +633,7 @@ export default function Cards() {
                 description="Changes apply the moment you make them."
               />
               <PanelBody>
-                <div className="space-y-1">
-                  <Toggle
-                    checked={card.contactless}
-                    onChange={(next) => setControls({ contactless: next })}
-                    label="Contactless"
-                    description="Tap to pay at terminals."
-                    disabled={card.frozen || card.variant === 'virtual'}
-                  />
-                  <Toggle
-                    checked={card.onlinePayments}
-                    onChange={(next) => setControls({ onlinePayments: next })}
-                    label="Online payments"
-                    description="Card-not-present purchases and subscriptions."
-                    disabled={card.frozen}
-                  />
-                  <Toggle
-                    checked={card.atmWithdrawals}
-                    onChange={(next) => setControls({ atmWithdrawals: next })}
-                    label="ATM withdrawals"
-                    description="Cash machines, at home and abroad."
-                    disabled={card.frozen || card.variant === 'virtual'}
-                  />
-                </div>
+
 
                 {card.variant === 'virtual' ? (
                   <p className="mt-3 text-xs leading-relaxed text-base-content/45">
