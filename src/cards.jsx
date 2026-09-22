@@ -847,55 +847,7 @@ export default function Cards() {
           </>
         }
       >
-        <div className="space-y-1">
-          <Field
-            label="Card name"
-            htmlFor="issue-label"
-            hint="This is what you will see next to the payments."
-          >
-            <Input
-              id="issue-label"
-              value={issueLabel}
-              placeholder="Cloud infrastructure"
-              maxLength={32}
-              onChange={(event) => setIssueLabel(event.target.value)}
-            />
-          </Field>
 
-          <Field label="Funded from" htmlFor="issue-account">
-            <Select
-              id="issue-account"
-              value={issueAccountId}
-              onChange={(event) => setIssueAccountId(event.target.value)}
-            >
-              {(accounts.data ?? []).map((account) => (
-                <option key={account.id} value={account.id}>
-                  {account.name} · {maskAccount(account.number)} · {account.currency}
-                </option>
-              ))}
-            </Select>
-          </Field>
-
-          <Field
-            label="Monthly limit"
-            htmlFor="issue-limit"
-            hint="Per-transaction cap is set to a quarter of this, and can be changed afterwards."
-          >
-            <AmountInput
-              id="issue-limit"
-              symbol={
-                CURRENCIES[
-                  (accounts.data ?? []).find((account) => account.id === issueAccountId)
-                    ?.currency ?? 'USD'
-                ].symbol
-              }
-              value={issueLimitInput}
-              onChange={(event) => setIssueLimitInput(event.target.value)}
-            />
-          </Field>
-
-          {issueError ? <InlineAlert>{issueError}</InlineAlert> : null}
-        </div>
       </Dialog>
 
       <TransactionDrawer
