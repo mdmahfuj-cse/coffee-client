@@ -778,55 +778,7 @@ export default function Cards() {
           </div>
 
           {/* Limits */}
-          <Dialog
-            open={limitsOpen}
-            onClose={() => setLimitsOpen(false)}
-            title="Spending limits"
-            description={`Both limits are set in ${CURRENCIES[card.currency].name.toLowerCase()}, the card's own currency.`}
-            footer={
-              <>
-                <Button variant="ghost" onClick={() => setLimitsOpen(false)}>
-                  Cancel
-                </Button>
-                <Button variant="primary" loading={busy === 'limits'} onClick={saveLimits}>
-                  Save limits
-                </Button>
-              </>
-            }
-          >
-            <div className="space-y-1">
-              <Field
-                label="Monthly limit"
-                htmlFor="limit-monthly"
-                hint={`Spent so far this month: ${formatMoney(
-                  card.spentThisMonthMinor,
-                  card.currency,
-                )} ${card.currency}`}
-              >
-                <AmountInput
-                  id="limit-monthly"
-                  symbol={CURRENCIES[card.currency].symbol}
-                  value={monthlyInput}
-                  onChange={(event) => setMonthlyInput(event.target.value)}
-                />
-              </Field>
-
-              <Field
-                label="Per transaction"
-                htmlFor="limit-per"
-                hint="The largest single payment this card will authorise."
-              >
-                <AmountInput
-                  id="limit-per"
-                  symbol={CURRENCIES[card.currency].symbol}
-                  value={perInput}
-                  onChange={(event) => setPerInput(event.target.value)}
-                />
-              </Field>
-
-              {limitError ? <InlineAlert>{limitError}</InlineAlert> : null}
-            </div>
-          </Dialog>
+  
         </>
       ) : null}
 
