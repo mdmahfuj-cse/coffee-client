@@ -539,72 +539,7 @@ export default function Cards() {
                   </>
                 }
               />
-              <PanelBody>
-                <div className="grid gap-6 sm:grid-cols-2">
-                  <dl>
-                    <DetailRow label="Status">
-                      {card.frozen ? (
-                        <Badge tone="warning">Frozen</Badge>
-                      ) : (
-                        <Badge tone="success">Active</Badge>
-                      )}
-                    </DetailRow>
-                    <DetailRow label="Card number">
-                      <span className="amount font-mono text-xs tracking-wider">
-                        {revealed ? card.pan : maskPan(card.pan)}
-                      </span>
-                    </DetailRow>
-                    <DetailRow label="Expires">
-                      <span className="amount font-mono text-xs">{card.expiry}</span>
-                    </DetailRow>
-                    <DetailRow label="Security code">
-                      <span className="amount font-mono text-xs">
-                        {revealed ? card.cvv : '•••'}
-                      </span>
-                    </DetailRow>
-                    <DetailRow label="Cardholder">{card.holder}</DetailRow>
-                    <DetailRow label="Funding account">
-                      {fundingAccount
-                        ? `${fundingAccount.name} · ${maskAccount(fundingAccount.number)}`
-                        : '—'}
-                    </DetailRow>
-                    <DetailRow label="Currency">{card.currency}</DetailRow>
-                    <DetailRow label="Issued">
-                      <span className="amount font-mono text-xs">{fmtDate(card.createdAt)}</span>
-                    </DetailRow>
-                  </dl>
 
-                  <div className="flex flex-col gap-5">
-                    <Progress
-                      value={card.spentThisMonthMinor}
-                      max={card.monthlyLimitMinor}
-                      label="Spent this month"
-                      caption={`${money(card.spentThisMonthMinor, card.currency)} of ${money(
-                        card.monthlyLimitMinor,
-                        card.currency,
-                      )}`}
-                    />
-
-
-
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      className="self-start"
-                      icon={<SlidersHorizontal className="size-3.5" />}
-                      onClick={openLimits}
-                    >
-                      Adjust limits
-                    </Button>
-
-                    {revealed ? (
-                      <p className="text-xs leading-relaxed text-base-content/45">
-                        Full details hide themselves again after twenty seconds.
-                      </p>
-                    ) : null}
-                  </div>
-                </div>
-              </PanelBody>
             </Panel>
 
             <Panel>
