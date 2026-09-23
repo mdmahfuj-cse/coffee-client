@@ -585,26 +585,7 @@ export default function Cards() {
                       )}`}
                     />
 
-                    <dl>
-                      <DetailRow label="Monthly limit">
-                        <span className="amount font-mono text-xs">
-                          {money(card.monthlyLimitMinor, card.currency)}
-                        </span>
-                      </DetailRow>
-                      <DetailRow label="Per transaction">
-                        <span className="amount font-mono text-xs">
-                          {money(card.perTransactionLimitMinor, card.currency)}
-                        </span>
-                      </DetailRow>
-                      <DetailRow label="Remaining">
-                        <span className="amount font-mono text-xs">
-                          {money(
-                            Math.max(card.monthlyLimitMinor - card.spentThisMonthMinor, 0),
-                            card.currency,
-                          )}
-                        </span>
-                      </DetailRow>
-                    </dl>
+
 
                     <Button
                       size="sm"
