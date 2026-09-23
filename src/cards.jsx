@@ -381,40 +381,7 @@ export default function Cards() {
         }
       />
 
-      <StatGrid className="mb-4">
-        <StatTile
-          label="Cards on account"
-          loading={cards.initialLoading}
-          icon={<CreditCard className="size-4" />}
-          value={totals.count.toLocaleString('en-US')}
-          hint={`${totals.virtual} virtual · ${totals.count - totals.virtual} physical`}
-        />
-        <StatTile
-          label="Spent this month"
-          loading={cards.initialLoading}
-          icon={<Receipt className="size-4" />}
-          value={<AmountRoll minor={totals.spent} />}
-          hint={`${totals.utilisation.toFixed(0)}% of the combined limit`}
-        />
-        <StatTile
-          label="Left to spend"
-          loading={cards.initialLoading}
-          icon={<Wallet className="size-4" />}
-          value={<AmountRoll minor={totals.remaining} />}
-          hint={`of ${money(totals.limit)} allowed across all cards`}
-        />
-        <StatTile
-          label="Frozen"
-          loading={cards.initialLoading}
-          icon={<Snowflake className="size-4" />}
-          value={totals.frozen.toLocaleString('en-US')}
-          hint={
-            totals.frozen === 0
-              ? 'Every card is live and authorising payments.'
-              : 'Frozen cards decline everything, online and in person.'
-          }
-        />
-      </StatGrid>
+
 
       {/* The wallet */}
  
