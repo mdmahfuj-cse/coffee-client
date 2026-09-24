@@ -389,24 +389,7 @@ export default function Cards() {
 
 
       {/* Issue */}
-      <Dialog
-        open={issueOpen}
-        onClose={() => setIssueOpen(false)}
-        title="Issue a virtual card"
-        description="Virtual cards are made for one merchant or one subscription. Freeze or delete it and nothing else on the account is affected."
-        footer={
-          <>
-            <Button variant="ghost" onClick={() => setIssueOpen(false)}>
-              Cancel
-            </Button>
-            <Button variant="primary" loading={busy === 'issue'} onClick={issueCard}>
-              Issue card
-            </Button>
-          </>
-        }
-      >
 
-      </Dialog>
 
       <TransactionDrawer
         transaction={selectedTransaction}
