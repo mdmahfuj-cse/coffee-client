@@ -92,49 +92,7 @@ export default function Cards() {
     setSelectedId(id);
     plates.current.get(id)?.scrollIntoView({
       behavior: 'smooth',
-      block: 'nearest',
-      inline: 'center',
-    });
-  };
-
-  const step = (delta: number) => {
-    const index = list.findIndex((item) => item.id === cardId);
-    const next = list[Math.min(Math.max(index + delta, 0), list.length - 1)];
-    if (next && next.id !== cardId) select(next.id);
-  };
-
-  // A different card is a different question: hide the digits, start again at
-  // the first page of its payments.
-  useEffect(() => {
-    setRevealed(false);
-    setLedgerPage(1);
-  }, [cardId]);
-
-  useEffect(() => {
-    if (!revealed) return;
-    const timer = window.setTimeout(() => setRevealed(false), REVEAL_MS);
-    return () => window.clearTimeout(timer);
-  }, [revealed]);
-
-  const ledger = useApi(
-    () =>
-      api.getTransactions({
-        cardId,
-        page: ledgerPage,
-        pageSize: LEDGER_PAGE_SIZE,
-        sortBy: 'date',
-        sortDirection: 'desc',
-      }),
-    [cardId, ledgerPage],
-    { enabled: Boolean(cardId) },
-  );
-
-  /** The card's whole history, for the spend bars. */
-  const history = useApi(
-    () => api.getTransactions({ cardId, pageSize: 2_000, sortBy: 'date', sortDirection: 'asc' }),
-    [cardId],
-    { enabled: Boolean(cardId) },
-  );
+     
 
   const spend = useMemo<SeriesPoint[]>(() => {
     const rows = history.data?.rows ?? [];
